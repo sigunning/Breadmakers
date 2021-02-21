@@ -1,0 +1,61 @@
+﻿@model Breadmakers.ViewModels.BatwaiiiViewModel
+
+@{
+    ViewBag.Title = "Index View";
+}
+
+<h2>BatwaiiiView</h2>
+
+<div>
+    <h4>BatwaiiiModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => Model.Batwaiii.Name)
+        </dt>
+
+        <dd>
+            @Model.Batwaiii.Name
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.Batwaiii.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.Batwaiii.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.Batwaiii.Accomodation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.Batwaiii.Accomodation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.Batwaiii.MonthYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.Batwaiii.MonthYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => Model.Batwaiii.ImgChamp)
+        </dt>
+
+    </dl>
+
+    <img src="@Url.Content(Model.Batwaiii.ImgChamp)" alt="Image" />
+
+    <div class="panel">
+
+        @Html.Raw(Model.Batwaiii.PostScript)
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

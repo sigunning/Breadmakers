@@ -1,0 +1,27 @@
+﻿@model Breadmakers.ViewModels.BatwaiiiViewModel
+
+@{
+    ViewBag.Title = "Index View";
+}
+
+<h2>BatwaiiiView</h2>
+
+<div>
+    <h4>Batwaiii List</h4>
+    
+    <ul>
+        @foreach (var batwaiii in Model.BatwaiiiList)
+        {
+        <li>
+            @batwaiii.Name
+            @Html.ActionLink("Details", "BatDetail", new {  id = batwaiii.Key  })
+        </li>
+
+        }
+    </ul>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

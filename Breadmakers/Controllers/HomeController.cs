@@ -17,6 +17,7 @@ namespace Breadmakers.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+          
             return View();
         }
 
@@ -34,5 +35,11 @@ namespace Breadmakers.Controllers
             return View();
         }
 
+        public ActionResult Membership()
+        {
+            ViewBag.Message = "Your Membership page.";
+
+            return View();
+        }
     }
 }

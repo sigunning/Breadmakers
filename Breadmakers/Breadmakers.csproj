@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -120,21 +123,31 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BatwaiiiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Batwaiii.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DataAccess.cs" />
+    <Compile Include="ViewModels\BatwaiiiViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Images\batwaii.jpg" />
+    <Content Include="Content\Images\BATWAIII\BAT2013\presentation.jpg" />
+    <Content Include="Content\Images\BATWAIII\BAT2014\postscript.htm" />
+    <Content Include="Content\Images\BATWAIII\BAT2014\presentation.jpg" />
     <Content Include="Content\Images\BM.jpg" />
     <Content Include="Content\Images\breadboard.jpg" />
     <Content Include="Content\Images\breadmakers.gif" />
     <Content Include="Content\Images\logo.gif" />
+    <Content Include="Content\Images\Membership\application_invite.jpg" />
+    <Content Include="Content\Images\Membership\application_request.jpg" />
+    <Content Include="Content\Images\Membership\rent_boy.jpg" />
     <Content Include="Content\Images\Mugs\bryan.jpg" />
     <Content Include="Content\Images\Mugs\diesel.jpg" />
     <Content Include="Content\Images\Mugs\metcalfe.jpg" />
@@ -142,6 +155,7 @@
     <Content Include="Content\Images\Mugs\smithy.jpg" />
     <Content Include="Content\Images\Mugs\snorks.jpg" />
     <Content Include="Content\Images\Mugs\sprinks.jpg" />
+    <Content Include="Content\Images\penha.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -175,10 +189,12 @@
     <Content Include="Views\Home\Events.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Brethren.cshtml" />
+    <Content Include="Views\Home\Membership.cshtml" />
+    <Content Include="Views\Batwaiii\BatList.cshtml" />
+    <Content Include="Views\Batwaiii\BatDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
