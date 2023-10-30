@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Gallery";
+    var uri = ViewBag.GalleryPath;
+    uri = uri.Replace("|", "/");
+    var imagePath = Server.MapPath(uri);
+    string[] files = new string[0];
+    Dictionary<string, string> dictCaptions = new Dictionary<string, string>();
+
+    if (System.IO.Directory.Exists(imagePath))
+    {
+        files = Directory.GetFiles(imagePath);
+        dictCaptions = Breadmakers.Helpers.Utils.Csv2Dict(imagePath + @"\captions.txt");
+    }
+}
+
+<div class="container">
+    <h4>@ViewBag.CodeName  - Gallery</h4>
+
+
+    <br />
+
+    <div class="row">
+
+
+        @for (var i = 0; i < files.Count(); i++)
+        {
+            string filename = Path.GetFileName(files[i]);
+            if (filename == "captions.txt")
+            { continue; }
+            var imgUrl = uri + "/" + filename;
+            string caption;
+            if (!dictCaptions.TryGetValue(filename, out caption))
+            { caption = filename; }
+
+            <div class="col-md-4 col-sm-6">
+                <div class="card">
+
+                    <div class="card-body">
+                        <h5 class="card-title purple-text">@caption</h5>
+                    </div>
+                    @if (filename.Contains(".mp4"))
+                    {
+
+                        <video class="img-responsive" controls="controls">
+                            <source src="@Url.Content(@imgUrl)" type="video/mp4" />
+                        </video>
+                        <a href="@Url.Content(@imgUrl)" download>Download</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Content(@imgUrl)"><img class="card-img-bottom" src="@Url.Content(@imgUrl)" alt="@filename"></a>
+                    }
+                </div>
+                <br />
+            </div>
+            <br />
+
+        }
+
+
+    </div>
+
+   
+
+
+
+</div>

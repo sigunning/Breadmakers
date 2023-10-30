@@ -1,0 +1,191 @@
+﻿@model Breadmakers.ViewModels.ScoreCardViewModel
+@{
+    ViewBag.Title = "ScoreCardView";
+}
+
+
+
+<div class="container">
+    <h4>Score Card</h4>
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <td colspan="2" class="font-weight-bold table-info">Competition</td>
+            <td colspan="3">@Model.ScoreCard.CompetitionName</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="font-weight-bold table-info">Course</td>
+            <td colspan="2">@Model.ScoreCard.CourseName</td>
+            <td>@Model.ScoreCard.RoundDate.ToString("MMM dd yyyy")</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="font-weight-bold table-info">Player</td>
+            <td colspan="2">@Model.ScoreCard.PlayerName</td>
+            <td>HCAP <b> @Model.ScoreCard.HCAP</b></td>
+        </tr>
+        <tr class="font-weight-bold table-warning">
+            <td>Hole</td>
+            <td>Par</td>
+            <td>SI</td>
+            <td>Score</td>
+            <td>Pts</td>
+        </tr>
+
+        @*scores*@
+
+        <tr>
+            <td class="font-weight-bold">1</td>
+            <td>@Model.Course.H1_Par</td>
+            <td class="text-danger">@Model.Course.H1_SI</td>
+            <td>@Model.ScoreCard.S1</td>
+            <td class="text-info">@Model.ScoreCard.P1</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">2</td>
+            <td>@Model.Course.H2_Par</td>
+            <td class="text-danger">@Model.Course.H2_SI</td>
+            <td>@Model.ScoreCard.S2</td>
+            <td class="text-info">@Model.ScoreCard.P2</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">3</td>
+            <td>@Model.Course.H3_Par</td>
+            <td class="text-danger">@Model.Course.H3_SI</td>
+            <td>@Model.ScoreCard.S3</td>
+            <td class="text-info">@Model.ScoreCard.P3</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">4</td>
+            <td>@Model.Course.H4_Par</td>
+            <td class="text-danger">@Model.Course.H4_SI</td>
+            <td>@Model.ScoreCard.S4</td>
+            <td class="text-info">@Model.ScoreCard.P4</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">5</td>
+            <td>@Model.Course.H5_Par</td>
+            <td class="text-danger">@Model.Course.H5_SI</td>
+            <td>@Model.ScoreCard.S5</td>
+            <td class="text-info">@Model.ScoreCard.P5</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">6</td>
+            <td>@Model.Course.H6_Par</td>
+            <td class="text-danger">@Model.Course.H6_SI</td>
+            <td>@Model.ScoreCard.S6</td>
+            <td class="text-info">@Model.ScoreCard.P6</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">7</td>
+            <td>@Model.Course.H7_Par</td>
+            <td class=" text-danger">@Model.Course.H7_SI</td>
+            <td>@Model.ScoreCard.S7</td>
+            <td class="text-info">@Model.ScoreCard.P7</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">8</td>
+            <td>@Model.Course.H8_Par</td>
+            <td class="text-danger">@Model.Course.H8_SI</td>
+            <td>@Model.ScoreCard.S8</td>
+            <td class="text-info">@Model.ScoreCard.P8</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">9</td>
+            <td>@Model.Course.H9_Par</td>
+            <td class="text-danger">@Model.Course.H9_SI</td>
+            <td>@Model.ScoreCard.S9</td>
+            <td class="text-info">@Model.ScoreCard.P9</td>
+        </tr>
+
+
+        <tr class="font-weight-bold table-warning">
+            <td class="font-weight-bold">OUT</td>
+            <td>@Model.Course.Out_Par</td>
+            <td class="text-danger">-</td>
+            <td>@Model.ScoreCard.Out_Score</td>
+            <td class="text-info">@Model.ScoreCard.Out_Pts</td>
+        </tr>
+
+        <tr>
+            <td class="font-weight-bold">10</td>
+            <td>@Model.Course.H10_Par</td>
+            <td class="text-danger">@Model.Course.H10_SI</td>
+            <td>@Model.ScoreCard.S10</td>
+            <td class="text-info">@Model.ScoreCard.P10</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">11</td>
+            <td>@Model.Course.H11_Par</td>
+            <td class="text-danger">@Model.Course.H11_SI</td>
+            <td>@Model.ScoreCard.S11</td>
+            <td class="text-info">@Model.ScoreCard.P11</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">12</td>
+            <td>@Model.Course.H12_Par</td>
+            <td class="text-danger">@Model.Course.H12_SI</td>
+            <td>@Model.ScoreCard.S12</td>
+            <td class="text-info">@Model.ScoreCard.P12</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">13</td>
+            <td>@Model.Course.H13_Par</td>
+            <td class="text-danger">@Model.Course.H13_SI</td>
+            <td>@Model.ScoreCard.S13</td>
+            <td class="text-info">@Model.ScoreCard.P13</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">14</td>
+            <td>@Model.Course.H14_Par</td>
+            <td class="text-danger">@Model.Course.H14_SI</td>
+            <td>@Model.ScoreCard.S14</td>
+            <td class="text-info">@Model.ScoreCard.P14</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">15</td>
+            <td>@Model.Course.H15_Par</td>
+            <td class="text-danger">@Model.Course.H15_SI</td>
+            <td>@Model.ScoreCard.S15</td>
+            <td class="text-info">@Model.ScoreCard.P15</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">16</td>
+            <td>@Model.Course.H16_Par</td>
+            <td class="text-danger">@Model.Course.H16_SI</td>
+            <td>@Model.ScoreCard.S16</td>
+            <td class="text-info">@Model.ScoreCard.P16</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">17</td>
+            <td>@Model.Course.H17_Par</td>
+            <td class=" text-danger">@Model.Course.H17_SI</td>
+            <td>@Model.ScoreCard.S17</td>
+            <td class="text-info">@Model.ScoreCard.P17</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">18</td>
+            <td>@Model.Course.H18_Par</td>
+            <td class="text-danger">@Model.Course.H18_SI</td>
+            <td>@Model.ScoreCard.S18</td>
+            <td class="text-info">@Model.ScoreCard.P18</td>
+        </tr>
+
+
+        <tr class="font-weight-bold table-warning">
+            <td class="font-weight-bold">IN</td>
+            <td>@Model.Course.In_Par</td>
+            <td class="text-danger">-</td>
+            <td>@Model.ScoreCard.In_Score</td>
+            <td class="text-info">@Model.ScoreCard.In_Pts</td>
+        </tr>
+        <tr class="font-weight-bold table-info">
+            <td class="font-weight-bold">Total</td>
+            <td>@Model.Course.Tot_Par</td>
+            <td class="text-danger">-</td>
+            <td>@Model.ScoreCard.Tot_Score</td>
+            <td class="text-info">@Model.ScoreCard.Tot_Pts</td>
+        </tr>
+
+    </table>
+
+
+</div>

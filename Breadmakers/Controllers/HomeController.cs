@@ -41,5 +41,18 @@ namespace Breadmakers.Controllers
 
             return View();
         }
+
+        public ActionResult Gallery(string id)
+        {
+            ViewBag.Message = "Your Gallery page.";
+            ViewBag.GalleryPath = id;
+
+            // get comp code, last but one element
+            // "~|Content|BAT|BAT2005|Gallery"
+            string[] aPath = id.Split('|');
+            ViewBag.CodeName = aPath[aPath.Length-2];
+
+            return View();
+        }
     }
 }

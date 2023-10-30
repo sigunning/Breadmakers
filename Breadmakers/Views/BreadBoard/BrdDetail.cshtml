@@ -1,0 +1,117 @@
+﻿@model Breadmakers.ViewModels.BreadBoardViewModel
+
+@{
+    ViewBag.Title = "BreadBoard Detail";
+}
+
+<div class="container">
+    <h4>Bread Board Day</h4>
+
+    <div class="row">
+
+        <div class="col-md-6 col-sm-10">
+            <div class="card" >
+                <div class="row">
+                    <img class="col-6 card-img-top" src="@Url.Content( Model.BreadBoard.ImgChamp1)" alt="@Model.BreadBoard.Winner" />
+                    <img class="col-6 card-img-top" src="@Url.Content( Model.BreadBoard.ImgChamp2)" alt="@Model.BreadBoard.Winner" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@Model.BreadBoard.CompetitionName</h5>
+                    <p class="text-info">@Model.BreadBoard.Venue &nbsp; @Model.BreadBoard.MonthYear</p>
+                    <p class="text-success">Victors &nbsp; <b> @Model.BreadBoard.Winner</b></p>
+
+
+                </div>
+            </div>
+            <br />
+        </div>
+
+
+        @foreach (var round in Model.BreadBoard.Rounds)
+        {
+            <div class="col-md-6 col-sm-10">
+
+                <div class="card" >
+                    <div class="row">
+                        <div class="col-6">
+
+                            <img src="~/Content/Images/breadboard.jpg" />
+                        </div>
+                        <div class="col-6">
+                            <div class="card-body">
+                                <h5 class="card-title">@round.CourseName</h5>
+                                <p class="text-info">
+                                    @round.RoundDate.ToString("dd MMM yyyy")
+                                </p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="card-body">
+                        <h5>Scores</h5>
+                        <table class="table table-condensed table-bordered">
+                            <tr class="table-warning">
+                                <td>#</td>
+                                <td>Player</td>
+                                <td>HC</td>
+                                <td>Pts</td>
+                            </tr>
+                            @foreach (var score in round.SummaryScores)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("ScoreCard", "ScoreCard",  new { id = score })"><i class="fa fa-list-ol fa-1x purple-text"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("ScoreCard", "ScoreCard",   score  )">@score.PlayerName</a>
+                                    </td>
+                                    <td class="text-success text-center">@score.HCAP</td>
+                                    <td class="purple-text text-center">@score.Tot_Pts</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+
+                </div>
+                <br />
+            </div>
+
+        }
+
+    </div>
+
+    <br />
+
+        <div class="card ">
+
+            <div class="card-body">
+                <h5 class="card-title">Smug-Shot</h5>
+                <a href="@Url.Content(Model.BreadBoard.SmugShot)"><img class="card-img-top" src="@Url.Content(Model.BreadBoard.SmugShot)" alt="@Model.BreadBoard.Winner" /></a>
+                <p class="card-text">
+                    @Html.Raw(Model.BreadBoard.PostScript)
+                </p>
+
+            </div>
+     
+        </div>
+
+        
+
+        <br />
+
+        <div class="card ">
+
+            <div class="card-body">
+                <h5 class="card-title">Bake-Off</h5>
+                <p class="card-text">
+                    @Html.Raw(Model.BreadBoard.BakeOff)
+                </p>
+
+            </div>
+        </div>
+    
+</div>

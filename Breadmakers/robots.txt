@@ -1,0 +1,8 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://breadmakersgolf.azurewebsites.net/sitemap.xml
+

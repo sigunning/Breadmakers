@@ -1,0 +1,41 @@
+﻿@model Breadmakers.ViewModels.BreadBoardViewModel
+
+@{
+    ViewBag.Title = "BreadBoard Days";
+}
+
+
+
+<div class=" container">
+    <h4>BreadBoard Days</h4>
+    <div class="row">
+
+        @foreach (var breadBoard in Model.BreadBoardList)
+        {
+            <div class="col-md-4 col-sm-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="row">
+                        <img class="col-6 card-img-top" src="@Url.Content( breadBoard.ImgChamp1)"  alt="@breadBoard.Winner" />
+                        <img class="col-6 card-img-top" src="@Url.Content( breadBoard.ImgChamp2)"  alt="@breadBoard.Winner" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@breadBoard.CompetitionName</h5>
+                        <p class="text-info">
+                            @breadBoard.Venue &nbsp; @breadBoard.MonthYear
+                        </p>
+                        <p class="text-success"><b> @breadBoard.Winner</b></p>
+                        <p>
+                            <a href="@Url.Action("BrdDetail", "BreadBoard", new { id = breadBoard.CompetitionId })" class="btn btn-primary">Details</a>
+                        </p>
+
+                    </div>
+                </div>
+                <br />
+            </div>
+
+
+        }
+
+
+    </div>
+</div>

@@ -4,58 +4,133 @@
     ViewBag.Title = "Index View";
 }
 
-<h2>BatwaiiiView</h2>
+<div class="container">
+    <h4>BATWAIII</h4>
 
-<div>
-    <h4>BatwaiiiModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => Model.Batwaiii.Name)
-        </dt>
+    <div class="row">
 
-        <dd>
-            @Model.Batwaiii.Name
-        </dd>
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
 
-        <dt>
-            @Html.DisplayNameFor(model => Model.Batwaiii.Location)
-        </dt>
+                <img src="@Url.Content( Model.Batwaiii.ImgChamp)" class="card-img-top" alt="@Model.Batwaiii.Winner" />
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Batwaiii.CompetitionName</h5>
+                    <p class="text-info">@Model.Batwaiii.Venue &nbsp; @Model.Batwaiii.MonthYear</p>
+                    <p class="text-success">Champion &nbsp; <b> @Model.Batwaiii.Winner</b></p>
+                    <p> @Model.Batwaiii.CompetitionDescription</p>
+                    <p>Accommodation &nbsp; <b> @Model.Batwaiii.Accommodation</b></p>
+                    <p>
+                        <a href="@Url.Action("Gallery", "Home", new {  id = @Model.Batwaiii.GalleryPath }  )" class="btn btn-primary">Gallery</a>
+                    </p>
+                </div>
+            </div>
+            <br />
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => Model.Batwaiii.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => Model.Batwaiii.Accomodation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => Model.Batwaiii.Accomodation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => Model.Batwaiii.MonthYear)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => Model.Batwaiii.MonthYear)
-        </dd>
-
-        <dt>
-            @Html.DisplayFor(model => Model.Batwaiii.ImgChamp)
-        </dt>
-
-    </dl>
-
-    <img src="@Url.Content(Model.Batwaiii.ImgChamp)" alt="Image" />
-
-    <div class="panel">
-
-        @Html.Raw(Model.Batwaiii.PostScript)
     </div>
+
+    <div class="card-body">
+        <h5>Total Scores</h5>
+        <table class="table table-condensed table-bordered">
+            <tr class="table-warning">
+                <td>Player</td>
+                <td>Gross</td>
+                <td>Disc</td>
+                <td>Net Pts</td>
+            </tr>
+            @foreach (var score in Model.Batwaiii.TotalScores)
+            {
+        <tr>
+            <td class="text-success text-center">@score.PlayerName</td>
+            <td class="text-warning text-center">@score.Tot_Score</td>
+            <td class="text-warning text-center">@score.Dis_Pts</td>
+            <td class="purple-text text-center">@score.Net_Pts</td>
+        </tr>
+            }
+        </table>
+    </div>
+
+
+
+    <h4>Rounds</h4>
+
+    <div class="row">
+
+        @foreach (var round in Model.Batwaiii.Rounds)
+        {
+            <div class="col-md-4 col-sm-6">
+
+                <div class="card" style="width: 18rem;">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="@Url.Content( round.ImgCourse)" height="100" width="100" alt="Course Logo" />
+                        </div>
+                        <div class="col-6">
+                            <div class="card-body">
+                                <h5 class="card-title">@round.CourseName</h5>
+                                <p class="text-info">
+                                    @round.RoundDate.ToString("dd MMM yyyy")
+                                </p>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <h5>Scores</h5>
+                        <table class="table table-condensed table-bordered">
+                            <tr class="table-warning">
+                                <td>#</td>
+                                <td>Player</td>
+                                <td>HC</td>
+                                <td>Disc</td>
+                                <td>Net Pts</td>
+                            </tr>
+                            @foreach (var score in round.SummaryScores)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("ScoreCard", "ScoreCard",  new { id = score })"><i class="fa fa-list-ol fa-1x purple-text"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("ScoreCard", "ScoreCard",   score  )">@score.PlayerName</a>
+                                    </td>
+                                    <td class="text-success text-center">@score.HCAP</td>
+                                    <td class="text-warning text-center">@score.Dis_Pts</td>
+                                    <td class="purple-text text-center">@score.Net_Pts</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+
+                </div>
+                <br />
+            </div>
+
+        }
+    </div>
+    <br />
+
+    <div class="card ">
+
+        <div class="card-body">
+            <h5 class="card-title">Smug-Shot</h5>
+            <a href="@Url.Content(Model.Batwaiii.ImgPresentation)"><img class="card-img-top" src="@Url.Content(Model.Batwaiii.ImgPresentation)" alt="@Model.Batwaiii.Winner" /></a>
+            <p class="card-text">
+                @Html.Raw(Model.Batwaiii.PostScript)
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <br />
+
+
+
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

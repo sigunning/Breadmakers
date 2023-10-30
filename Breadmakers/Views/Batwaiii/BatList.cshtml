@@ -1,27 +1,43 @@
 ﻿@model Breadmakers.ViewModels.BatwaiiiViewModel
 
 @{
-    ViewBag.Title = "Index View";
+    ViewBag.Title = "BATWAIII Tournaments";
 }
 
-<h2>BatwaiiiView</h2>
 
-<div>
-    <h4>Batwaiii List</h4>
-    
-    <ul>
+
+<div class=" container">
+    <h4>Batwaiii Tournaments</h4>
+    <div class="row">
+
         @foreach (var batwaiii in Model.BatwaiiiList)
         {
-        <li>
-            @batwaiii.Name
-            @Html.ActionLink("Details", "BatDetail", new {  id = batwaiii.Key  })
-        </li>
+            <div class="col-md-3 col-sm-6">
+                <div class="card" style="width: 12rem;">
+                    
+                    <img src="@Url.Content( batwaiii.ImgWinner)" class="card-img-top" alt="@batwaiii.Winner" />
+                    <div class="card-body">
+                        <h5 class="card-title">@batwaiii.CompetitionName</h5>
+                        <p class="text-info">
+                            @batwaiii.Venue &nbsp; @batwaiii.MonthYear
+                        </p>
+                        <p class="text-success">Champion &nbsp; <b> @batwaiii.Winner</b></p>
+                        @*<p>
+                            <a href="@Url.Action("BatDetail", "Batwaiii", new { id = batwaiii.CompetitionId })" class="btn btn-primary">Details</a>
+                        </p>*@
+                        <div class="btn btn-light">
+                            @Html.ActionLink("Details", "BatDetail", "Batwaiii", new { id = batwaiii.CompetitionId }, new { onclick = "return DisplayProgressMessage(this, 'Loading...')" })
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+            </div>
+          
 
         }
-    </ul>
 
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

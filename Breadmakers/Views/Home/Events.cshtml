@@ -17,7 +17,10 @@
                     with the aid of a soldering iron in the agile hands of our engraver, Shanks.
                 </p>
 
-                <a href="#" class="btn btn-primary">Goto Events</a>
+                @*<a href="@Url.Action("BrdList", "BreadBoard")" class="btn btn-primary">Goto Events</a>*@
+                <div class="btn btn-light">
+                    @Html.ActionLink("Show Events", "BrdList", "BreadBoard", null, new { onclick= "return DisplayProgressMessage(this, 'Loading...')" })
+                </div>
             </div>
         </div>
         <br />
@@ -35,7 +38,10 @@
                     stableford competition over three courses for the "Bin Around the World
                     (and I I I)" trophy, or BATWAIII.
                 </p>
-                <a href="@Url.Action("BatList", "Batwaiii")" class="btn btn-primary">Goto Events</a>
+                
+                <div class="btn btn-light">
+                    @Html.ActionLink("Show Events", "BatList", "Batwaiii", null, new { onclick = "return DisplayProgressMessage(this, 'Loading...')" })
+                </div>
             </div>
         </div>
         <br />

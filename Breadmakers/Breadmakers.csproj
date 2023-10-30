@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -48,10 +49,31 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MoreLinq, Version=3.3.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.3.3.2\lib\net451\MoreLinq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.113.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.113.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -124,30 +146,171 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BatwaiiiController.cs" />
+    <Compile Include="Controllers\BreadBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ScoreCardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Models\Batwaiii.cs" />
+    <Compile Include="Models\BreadBoard.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\PlayerRound.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DataAccess.cs" />
     <Compile Include="ViewModels\BatwaiiiViewModel.cs" />
+    <Compile Include="ViewModels\BreadBoardViewModel.cs" />
+    <Compile Include="ViewModels\ScoreCardViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BAT\BAT2003\course4.jpg" />
+    <Content Include="Content\BAT\BAT2003\course1.jpg" />
+    <Content Include="Content\BAT\BAT2003\course3.jpg" />
+    <Content Include="Content\BAT\BAT2003\course2.jpg" />
+    <Content Include="Content\BAT\BAT2003\postscript.htm" />
+    <Content Include="Content\BAT\BAT2004\presentation.jpg" />
+    <Content Include="Content\BAT\BAT2004\course1.jpg" />
+    <Content Include="Content\BAT\BAT2004\course2.jpg" />
+    <Content Include="Content\BAT\BAT2004\course3.jpg" />
+    <Content Include="Content\BAT\BAT2004\postscript.htm" />
+    <Content Include="Content\BAT\BAT2005\course2.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\6f20re2.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 001.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 002.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 003.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 004.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 005.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 006.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 008.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 009.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 010.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 011.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 012.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 013.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 014.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 016.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 017.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 018.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 020.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 021.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 022.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 025.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\Bread2005 026.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\DSC00478.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\DSC00479.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\DSC00484.jpg" />
+    <Content Include="Content\BAT\BAT2005\postscript.htm" />
+    <Content Include="Content\BAT\BAT2005\presentation.jpg" />
+    <Content Include="Content\BAT\BAT2005\course1.jpg" />
+    <Content Include="Content\BAT\BAT2005\course4.jpg" />
+    <Content Include="Content\BAT\BAT2005\course3.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\captions.txt" />
+    <Content Include="Content\BAT\BAT2005\Gallery\oceanrebel.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\sea_dog.jpg" />
+    <Content Include="Content\BAT\BAT2005\Gallery\thumbs_up.jpg" />
+    <Content Include="Content\BAT\BAT2006\champ.jpg" />
+    <Content Include="Content\BAT\BAT2006\course1.jpg" />
+    <Content Include="Content\BAT\BAT2006\course2.jpg" />
+    <Content Include="Content\BAT\BAT2006\course3.jpg" />
+    <Content Include="Content\BAT\BAT2006\course4.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 001.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 002.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 004.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 005.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 010.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 011.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 013.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 014.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 015.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 016.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 017.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 019.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 021.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 023.mp4" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 027.mp4" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 031.mp4" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 042.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 043.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 044.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 045.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 046.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 048.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 049.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 050.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 051.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 052.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 053.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 054.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 055.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 056.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 057.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 058.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 059.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 060.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 061.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 064.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 065.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 066.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 067.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 068.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 069.mp4" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 070.mp4" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 071.mp4" />
+    <Content Include="Content\BAT\BAT2006\Gallery\Bread06 072.mp4" />
+    <Content Include="Content\BAT\BAT2006\Gallery\captions.txt" />
+    <Content Include="Content\BAT\BAT2006\Gallery\chilli_bread.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\penna_castle.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\penna_hole.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\praiadelrey.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\praia_champion.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\praia_hole1.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\praia_hole2.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\praia_trophies.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\praia_villa.jpg" />
+    <Content Include="Content\BAT\BAT2006\Gallery\troia_boys.jpg" />
+    <Content Include="Content\BAT\BAT2006\postscript.htm" />
+    <Content Include="Content\BAT\BAT2006\presentation.jpg" />
+    <Content Include="Content\BAT\BAT2007\champ.jpg" />
+    <Content Include="Content\BAT\BAT2007\Gallery\captions.txt" />
+    <Content Include="Content\BAT\BAT2007\postscript.htm" />
+    <Content Include="Content\BAT\BAT2007\presentation.jpg" />
+    <Content Include="Content\BAT\BAT2007\course2.jpg" />
+    <Content Include="Content\BAT\BAT2007\Gallery\playoff_2007.jpg" />
+    <Content Include="Content\BAT\BAT2007\course1.jpg" />
+    <Content Include="Content\BAT\BAT2007\course3.jpg" />
+    <Content Include="Content\BAT\BAT2014\course1.jpg" />
+    <Content Include="Content\BAT\BAT2014\course2.jpg" />
+    <Content Include="Content\BAT\BAT2014\course3.jpg" />
+    <Content Include="Content\BAT\BAT2014\Gallery\batwaiii_2014_group.jpg" />
+    <Content Include="Content\BAT\BAT2014\Gallery\captions.txt" />
+    <Content Include="Content\BAT\BAT2014\Gallery\jacket_fitting.jpg" />
+    <Content Include="Content\BAT\BAT2014\Gallery\mercure.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\BRD\BRD1612_bakeoff.htm" />
+    <Content Include="Content\BRD\BRD1612_postscript.htm" />
+    <Content Include="Content\BRD\BRD1612_smugshot.jpg" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\batwaii.jpg" />
-    <Content Include="Content\Images\BATWAIII\BAT2013\presentation.jpg" />
-    <Content Include="Content\Images\BATWAIII\BAT2014\postscript.htm" />
-    <Content Include="Content\Images\BATWAIII\BAT2014\presentation.jpg" />
+    <Content Include="Content\BAT\BAT2013\postscript.htm" />
+    <Content Include="Content\BAT\BAT2013\presentation.jpg" />
+    <Content Include="Content\BAT\BAT2014\postscript.htm" />
+    <Content Include="Content\BAT\BAT2014\presentation.jpg" />
     <Content Include="Content\Images\BM.jpg" />
     <Content Include="Content\Images\breadboard.jpg" />
     <Content Include="Content\Images\breadmakers.gif" />
+    <Content Include="Content\Images\golf.jpg" />
+    <Content Include="Content\Images\invite.png" />
     <Content Include="Content\Images\logo.gif" />
     <Content Include="Content\Images\Membership\application_invite.jpg" />
     <Content Include="Content\Images\Membership\application_request.jpg" />
+    <Content Include="Content\Images\Membership\bakerslevels.jpg" />
+    <Content Include="Content\Images\Membership\chilli_bread.jpg" />
     <Content Include="Content\Images\Membership\rent_boy.jpg" />
+    <Content Include="Content\Images\Membership\rules.jpg" />
+    <Content Include="Content\Images\Membership\shanks_rules.jpg" />
     <Content Include="Content\Images\Mugs\bryan.jpg" />
     <Content Include="Content\Images\Mugs\diesel.jpg" />
     <Content Include="Content\Images\Mugs\metcalfe.jpg" />
@@ -155,15 +318,24 @@
     <Content Include="Content\Images\Mugs\smithy.jpg" />
     <Content Include="Content\Images\Mugs\snorks.jpg" />
     <Content Include="Content\Images\Mugs\sprinks.jpg" />
+    <Content Include="Content\Images\Mugs\unknown.jpg" />
     <Content Include="Content\Images\penha.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="App_Data\forescore.db" />
+    <Content Include="Content\Images\Membership\Hulencourt.pdf" />
     <None Include="Properties\PublishProfiles\Configman - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -192,17 +364,13 @@
     <Content Include="Views\Home\Membership.cshtml" />
     <Content Include="Views\Batwaiii\BatList.cshtml" />
     <Content Include="Views\Batwaiii\BatDetail.cshtml" />
+    <Content Include="Views\ScoreCard\ScoreCard.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\BreadBoard\BrdList.cshtml" />
+    <Content Include="Views\BreadBoard\BrdDetail.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
@@ -240,7 +408,12 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
